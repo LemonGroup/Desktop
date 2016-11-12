@@ -29,7 +29,7 @@ namespace DeskTop
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             siteSelector = new Util.ElementSelector<string>(SiteList.GetSiteList());
-            dgSites.DataContext = siteSelector;
+            dgSites.DataContext = siteSelector.ToList(); // для того чтобы элементы можно было изменять (ставить голочки)
         }
 
         private void btnShowStat_Click(object sender, RoutedEventArgs e)

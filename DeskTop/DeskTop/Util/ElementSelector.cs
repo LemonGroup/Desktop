@@ -37,7 +37,7 @@ namespace DeskTop.Util
         public class Element
         {
             public bool Selected { get; set; }
-            public T Value { get; set; }
+            public T Value { get;set; }
 
             public Element(T element)
             {
