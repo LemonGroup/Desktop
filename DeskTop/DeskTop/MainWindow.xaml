@@ -5,11 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeskTop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="LemonStat" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Name="btnShowStat" Content="Общая статистика" Margin="3"/>
+        <Button Name="btnShowEveryDayStat" Content="Ежедневная статистика" Grid.Column="1" Margin="3"/>
+        <DataGrid Name="dgSites" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Сайт" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Name="dgKeyWords" Grid.Row="1" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Key}" Header="Персона" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Упоминаний" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
