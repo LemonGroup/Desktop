@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="SiteList.cs" />
+    <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

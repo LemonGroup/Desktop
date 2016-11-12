@@ -24,5 +24,10 @@ namespace DeskTop
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgSites.DataContext = new Util.ElementSelector<string>(SiteList.GetSiteList());
+        }
     }
 }

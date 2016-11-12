@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeskTop"
+        xmlns:conv="clr-namespace:DeskTop.Util.Converters"
         mc:Ignorable="d"
-        Title="LemonStat" Height="350" Width="525">
+        Title="LemonStat" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
+        <Grid.Resources>
+            <conv:TestConverter x:Key="TestConverter"></conv:TestConverter>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -17,10 +21,10 @@
         </Grid.RowDefinitions>
         <Button Name="btnShowStat" Content="Общая статистика" Margin="3"/>
         <Button Name="btnShowEveryDayStat" Content="Ежедневная статистика" Grid.Column="1" Margin="3"/>
-        <DataGrid Name="dgSites" Grid.Row="1">
+        <DataGrid Name="dgSites" ItemsSource="{Binding}" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
-                <DataGridTextColumn Binding="{Binding Value}" Header="Сайт" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Value, Converter={StaticResource TestConverter}}" Header="Сайт" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="dgKeyWords" Grid.Row="1" Grid.Column="1">
