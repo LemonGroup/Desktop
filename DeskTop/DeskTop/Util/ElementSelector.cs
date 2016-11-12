@@ -12,7 +12,7 @@ namespace DeskTop.Util
     ///  SelectedElements - возвращает выбраные элементы 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class ElementSelector<T> : IEnumerable<ElementSelector<T>.Element>
+    class ElementSelector<T> : IEnumerable<ElementSelector<T>.Element> where T: class 
     {
         protected List<Element> elements;
 
@@ -37,7 +37,7 @@ namespace DeskTop.Util
         public class Element
         {
             public bool Selected { get; set; }
-            public T Value;
+            public T Value { get; set; }
 
             public Element(T element)
             {
