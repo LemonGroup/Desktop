@@ -20,14 +20,21 @@ namespace DeskTop
     /// </summary>
     public partial class MainWindow : Window
     {
+        protected Util.ElementSelector<string> siteSelector;
         public MainWindow()
         {
             InitializeComponent();
         }
-
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dgSites.DataContext = new Util.ElementSelector<string>(SiteList.GetSiteList());
+            siteSelector = new Util.ElementSelector<string>(SiteList.GetSiteList());
+            dgSites.DataContext = siteSelector;
+        }
+
+        private void btnShowStat_Click(object sender, RoutedEventArgs e)
+        {
+            dgKeyWords.DataContext = Statistics.GetStatistics(siteSelector.SelectedElements);
         }
     }
 }

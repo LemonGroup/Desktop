@@ -12,7 +12,7 @@ namespace DeskTop.Util
     ///  SelectedElements - возвращает выбраные элементы 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class ElementSelector<T> : IEnumerable<ElementSelector<T>.Element> where T: class 
+    public class ElementSelector<T> : IEnumerable<ElementSelector<T>.Element> where T: class 
     {
         protected List<Element> elements;
 

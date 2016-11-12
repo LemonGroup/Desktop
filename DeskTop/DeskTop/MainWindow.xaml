@@ -19,18 +19,18 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Name="btnShowStat" Content="Общая статистика" Margin="3"/>
+        <Button Name="btnShowStat" Content="Общая статистика" Margin="3" Click="btnShowStat_Click"/>
         <Button Name="btnShowEveryDayStat" Content="Ежедневная статистика" Grid.Column="1" Margin="3"/>
-        <DataGrid Name="dgSites" ItemsSource="{Binding}" Grid.Row="1">
+        <DataGrid Name="dgSites" ItemsSource="{Binding}" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
                 <DataGridTextColumn Binding="{Binding Value, Converter={StaticResource TestConverter}}" Header="Сайт" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Name="dgKeyWords" Grid.Row="1" Grid.Column="1">
+        <DataGrid Name="dgKeyWords" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Key}" Header="Персона" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Value}" Header="Упоминаний" Width="*"/>
+                <DataGridTextColumn Binding="{Binding KeyWord}" Header="Персона" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Rank}" Header="Упоминаний" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
