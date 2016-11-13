@@ -36,5 +36,12 @@ namespace DeskTop
         {
             dgKeyWords.DataContext = Statistics.GetStatistics(siteSelector.SelectedElements);
         }
+
+        private void btnShowEveryDayStat_Click(object sender, RoutedEventArgs e)
+        {
+            var data = Statistics.GetDaylyStat(new DateTime(2016, 10, 25), new DateTime(2016, 11, 05));
+            var f = new FrmDaylyStat(data);
+            f.ShowDialog();
+        }
     }
 }

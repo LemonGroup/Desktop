@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FrmDaylyStat.xaml.cs">
+      <DependentUpon>FrmDaylyStat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SiteList.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
+    <Page Include="FrmDaylyStat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -20,7 +20,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Name="btnShowStat" Content="Общая статистика" Margin="3" Click="btnShowStat_Click"/>
-        <Button Name="btnShowEveryDayStat" Content="Ежедневная статистика" Grid.Column="1" Margin="3"/>
+        <Button Name="btnShowEveryDayStat" Content="Ежедневная статистика" Grid.Column="1" Margin="3" Click="btnShowEveryDayStat_Click"/>
         <DataGrid Name="dgSites" ItemsSource="{Binding}" Grid.Row="1" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
