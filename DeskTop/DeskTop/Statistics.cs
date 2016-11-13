@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeskTop
 {
-    static class Statistics
+    public static class Statistics
     {
         public static IEnumerable<StatRow> GetStatistics(IEnumerable<string> sites)
         {
@@ -41,13 +41,16 @@ namespace DeskTop
 
         public class StatRow
         {
-            public StatRow(string keyWord, int rank)
+            public StatRow(string keyWord, int rank, DateTime date = new DateTime())
             {
                 KeyWord = keyWord;
                 Rank = rank;
+                Date = date;
             }
             public string KeyWord { get; set; }
             public int Rank { get; set; }
+
+            public DateTime Date { get; set; }
         }
     }
 }
