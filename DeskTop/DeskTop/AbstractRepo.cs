@@ -26,9 +26,7 @@ namespace DeskTop
             }
             deletedKeys = new SortedSet<TKey>();
         }
-        private SortedList<TKey, ItemConteiner> items;
-        private SortedSet<TKey> deletedKeys;
-        private IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
+        public IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
         public T this[TKey key]
         {
             get
@@ -36,14 +34,15 @@ namespace DeskTop
                 if (items.ContainsKey(key)) return items[key].Item;
                 return null;
             }
-            set
-            {
-                Add(key, value);
-            }
+            set { Add(value); }
         }
 
-        public void Add(TKey key, T item)
+        private SortedList<TKey, ItemConteiner> items;
+        private SortedSet<TKey> deletedKeys;
+
+        public void Add(T item)
         {
+            TKey key = GetKey(item);
             if (!items.ContainsKey(key)) items.Add(key, new ItemConteiner(item, ItemState.Created));
             else
             {
