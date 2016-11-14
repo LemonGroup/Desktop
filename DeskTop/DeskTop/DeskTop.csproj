@@ -55,9 +55,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AbstractRepo.cs" />
     <Compile Include="FrmDaylyStat.xaml.cs">
       <DependentUpon>FrmDaylyStat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Persons\FrmPersons.xaml.cs">
+      <DependentUpon>FrmPersons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Persons\PersonRepo.cs" />
+    <Compile Include="Persons\Person.cs" />
+    <Compile Include="Repos.cs" />
     <Compile Include="SiteList.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="Util\Converters.cs" />
@@ -78,6 +85,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Persons\FrmPersons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
