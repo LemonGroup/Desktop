@@ -54,6 +54,7 @@ namespace DeskTop
 
         public void Delete(TKey key)
         {
+            items.Remove(key);
             deletedKeys.Add(key);
         }
         protected abstract T Create(TKey key);
