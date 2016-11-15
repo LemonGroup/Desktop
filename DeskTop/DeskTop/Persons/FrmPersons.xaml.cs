@@ -27,7 +27,10 @@ namespace DeskTop.Persons
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Repos.Persons.Add(new Person("test"));
+            var person = new Person("");
+            var f = new FrmEditPerson(person) {Title = "Добавление персоны"};
+            if (f.ShowDialog()!=true) return;
+            Repos.Persons.Add(person);
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
 
@@ -41,6 +44,23 @@ namespace DeskTop.Persons
                 Repos.Persons.Delete(person.Name);
             }
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
+        }
+
+
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstPersons.SelectedItems.Count == 0) return;
+            var person = (Person)lstPersons.SelectedItems[0];
+            string oldName = person.Name;
+            var f = new FrmEditPerson(person) { Title = "Редактивароние персоны" };
+            if (f.ShowDialog() != true) return;
+            Repos.Persons[oldName] = person;
+            UiHelper.RefreshCollection(lstPersons.ItemsSource);
+        }
+        private void btnOK_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

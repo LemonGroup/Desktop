@@ -59,6 +59,9 @@
     <Compile Include="FrmDaylyStat.xaml.cs">
       <DependentUpon>FrmDaylyStat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Persons\FrmEditPerson.xaml.cs">
+      <DependentUpon>FrmEditPerson.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Persons\FrmPersons.xaml.cs">
       <DependentUpon>FrmPersons.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Persons\FrmEditPerson.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Persons\FrmPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
