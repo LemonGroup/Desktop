@@ -16,11 +16,12 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="lstPersons" ItemsSource="{Binding Source={x:Static destop:Repos.Persons}, Path=Items}" DisplayMemberPath="Name"/>
+        <ListBox Name="lstPersons" ItemsSource="{Binding Source={x:Static destop:Repos.Persons}, Path=Items}" DisplayMemberPath="Name"
+                 SelectionMode="Extended"/>
         <StackPanel Grid.Column="1">
             <Button Name="btnAdd" Content="Добавить" Margin="2" Click="btnAdd_Click"/>
             <Button Name="btnEdit" Content="Изменить" Margin="2"/>
-            <Button Name="btnDelete" Content="Удалить" Margin="2"/>
+            <Button Name="btnDelete" Content="Удалить" Margin="2" Click="btnDelete_Click"/>
             <Button Name="btnSave" Content="Сохранить" Margin="2"/>
         </StackPanel>
         <Button Name="btnOK" Content="ОК" IsDefault="True" Width="80"

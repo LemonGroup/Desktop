@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DeskTop.Util;
 
 namespace DeskTop.Persons
 {
@@ -27,7 +28,19 @@ namespace DeskTop.Persons
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Repos.Persons.Add(new Person("test"));
-            lstPersons.Items.Refresh();
+            UiHelper.RefreshCollection(lstPersons.ItemsSource);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить выбранные объекты?", "Удаление элементов",
+                MessageBoxButton.YesNo) != MessageBoxResult.Yes) return;
+            foreach (object item in lstPersons.SelectedItems)
+            {
+                var person = item as Person;
+                Repos.Persons.Delete(person.Name);
+            }
+            UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
     }
 }
