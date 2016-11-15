@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DeskTop.Util;
 
 namespace DeskTop.Persons
 {
@@ -27,7 +28,7 @@ namespace DeskTop.Persons
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             Repos.Persons.Add(new Person("test"));
-            lstPersons.Items.Refresh();
+            UiHelper.RefreshItems(lstPersons.ItemsSource);
         }
     }
 }

@@ -16,7 +16,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="lstPersons" ItemsSource="{Binding Source={x:Static destop:Repos.Persons}, Path=Items}" DisplayMemberPath="Name"/>
+        <ListBox Name="lstPersons" DataContext="{Binding Source={x:Static destop:Repos.Persons}, Path=Items}" ItemsSource="{Binding}" DisplayMemberPath="Name"/>
         <StackPanel Grid.Column="1">
             <Button Name="btnAdd" Content="Добавить" Margin="2" Click="btnAdd_Click"/>
             <Button Name="btnEdit" Content="Изменить" Margin="2"/>

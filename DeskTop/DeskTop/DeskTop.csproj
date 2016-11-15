@@ -69,6 +69,7 @@
     <Compile Include="Statistics.cs" />
     <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
+    <Compile Include="Util\UiHelper.cs" />
     <Page Include="FrmDaylyStat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
