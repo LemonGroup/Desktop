@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +9,9 @@ namespace DeskTop.Util
 {
     public static class UiHelper
     {
-        public static void RefreshItems(object itemsSource)
+        public static void RefreshCollection(object itemSource)
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(itemsSource);
-            view.Refresh();
+            CollectionViewSource.GetDefaultView(itemSource).Refresh();
         }
     }
 }
