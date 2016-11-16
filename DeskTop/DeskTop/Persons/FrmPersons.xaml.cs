@@ -55,7 +55,7 @@ namespace DeskTop.Persons
             string oldName = person.Name;
             var f = new FrmEditPerson(person) { Title = "Редактивароние персоны" };
             if (f.ShowDialog() != true) return;
-            Repos.Persons[oldName] = person;
+            Repos.Persons.Update(oldName, person);
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)

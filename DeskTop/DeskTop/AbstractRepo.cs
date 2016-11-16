@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DeskTop.Persons;
@@ -51,6 +52,16 @@ namespace DeskTop
             }           
         }
 
+        public void Update(TKey oldKey, T item)
+        {
+            TKey key = GetKey(item);
+            if (key.Equals(oldKey)) items[key].State = ItemState.Updated; // поле с ключем не изменилось
+            else // в потивном случае удаляем элемент со старым ключем и доавляем под новым
+            {
+                items.Remove(oldKey);
+                items.Add(key, new ItemConteiner(item, ItemState.Updated));
+            }
+        }
 
         public void Delete(TKey key)
         {
