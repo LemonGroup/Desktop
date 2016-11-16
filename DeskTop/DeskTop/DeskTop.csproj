@@ -69,6 +69,7 @@
     <Compile Include="Persons\Person.cs" />
     <Compile Include="Repos.cs" />
     <Compile Include="SiteList.cs" />
+    <Compile Include="Sites\SitesRepo.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
