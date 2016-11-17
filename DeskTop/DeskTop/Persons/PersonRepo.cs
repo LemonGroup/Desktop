@@ -10,7 +10,7 @@ namespace DeskTop
 {
     public class PersonRepo : AbstractRepo<Person, string>
     {
-        protected override Person Create(string key)
+        protected Person Create(string key)
         {
             return new Person(key);
         }

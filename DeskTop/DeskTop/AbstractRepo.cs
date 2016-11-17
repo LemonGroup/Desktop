@@ -12,6 +12,7 @@ namespace DeskTop
     /// Абстрактный репозиторий. Хранит параллельно с элементами состояние (ItemState создан, обновлен, без изменений)
     /// Доступ к элементам по индексатору. 
     /// !!! При реализации сохранения сначала удалять удаленные элементы во избежание возможных конфликтов
+    /// Изменения передаются в БД отложенно в методе save()
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TKey"></typeparam>
@@ -68,7 +69,6 @@ namespace DeskTop
             items.Remove(key);
             deletedKeys.Add(key);
         }
-        protected abstract T Create(TKey key);
         public abstract void Save();
         protected abstract TKey GetKey(T item);
         private enum ItemState
