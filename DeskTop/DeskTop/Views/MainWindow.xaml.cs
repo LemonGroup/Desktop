@@ -28,7 +28,7 @@ namespace DeskTop
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            siteSelector = new Util.ElementSelector<string>(SiteList.GetSiteList());
+            siteSelector = new Util.ElementSelector<string>(Repos.Sites.Items.Select(i=>i.Url));
             dgSites.DataContext = siteSelector.ToList(); // для того чтобы элементы можно было изменять (ставить голочки)
         }
 
