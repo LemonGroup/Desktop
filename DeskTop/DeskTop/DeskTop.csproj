@@ -69,6 +69,13 @@
     <Compile Include="Persons\Person.cs" />
     <Compile Include="Repos.cs" />
     <Compile Include="SiteList.cs" />
+    <Compile Include="Sites\FrmEditSite.xaml.cs">
+      <DependentUpon>FrmEditSite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\FrmSites.xaml.cs">
+      <DependentUpon>FrmSites.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\Site.cs" />
     <Compile Include="Sites\SitesRepo.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="Util\Converters.cs" />
@@ -97,6 +104,14 @@
     <Page Include="Persons\FrmPersons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sites\FrmEditSite.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sites\FrmSites.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
