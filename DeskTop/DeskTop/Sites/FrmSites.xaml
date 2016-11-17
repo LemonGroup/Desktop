@@ -1,0 +1,30 @@
+﻿<Window x:Class="DeskTop.Sites.FrmSites"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeskTop.Persons"
+        xmlns:destop="clr-namespace:DeskTop"
+        mc:Ignorable="d"
+        Title="Сайты" Height="300" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Name="lstSites" ItemsSource="{Binding Source={x:Static destop:Repos.Sites}, Path=Items}" DisplayMemberPath="Url"
+                 SelectionMode="Extended"/>
+        <StackPanel Grid.Column="1">
+            <Button Name="btnAdd" Content="Добавить" Margin="2" Click="btnAdd_Click"/>
+            <Button Name="btnEdit" Content="Изменить" Margin="2" Click="btnEdit_Click"/>
+            <Button Name="btnDelete" Content="Удалить" Margin="2" Click="btnDelete_Click"/>
+            <Button Name="btnSave" Content="Сохранить" Margin="2" Click="BtnSave_OnClick"/>
+        </StackPanel>
+        <Button Name="btnOK" Content="ОК" IsDefault="True" Width="80"
+                Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Click="btnOK_Click"/>
+    </Grid>
+</Window>

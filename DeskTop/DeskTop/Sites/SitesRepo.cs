@@ -5,24 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DeskTop.Persons;
+using DeskTop.Sites;
 
 namespace DeskTop
 {
-    public class SitesRepo : AbstractRepo<string, int>
+    public class SitesRepo : AbstractRepo<Site, int>
     {
-        private int lastKey;
-        protected override string Create(int key) { return ""; }
+        private int lastKey; // счетчик id для создаваемых элементов, растет в сторону уменьшения
+        //(реальный id появится в БД)
+        public Site Create(string url) { return new Site(lastKey--, url); }
 
         public override void Save()
         {
             MessageBox.Show("Сайты сохранены (заглушка)");
         }
 
-        protected override int GetKey(string item)
+        protected override int GetKey(Site item)
         {
-            return item.GetHashCode();
+            return item.Id;
         }
 
-        public SitesRepo(IEnumerable<string> items) : base(items) { }
+        public SitesRepo(IEnumerable<Site> items) : base(items)
+        {
+            lastKey = -1;
+        }
     }
 }
