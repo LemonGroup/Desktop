@@ -16,5 +16,6 @@ namespace DeskTop.Persons
 
         public string Name { get; set; }
         public List<string> KeyWords { get; private set; }
+        public override string ToString() { return Name; }
     }
 }

@@ -16,6 +16,6 @@ namespace DeskTop.Sites
             Url = url;
         }
 
-
+        public override string ToString() { return Url; }
     }
 }
