@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeskTop.Persons
+namespace DeskTop
 {
     public class Person
     {

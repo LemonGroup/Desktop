@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using DeskTop.Persons;
-using DeskTop.Sites;
+
 
 namespace DeskTop
 {
