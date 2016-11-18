@@ -12,10 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DeskTop.Sites;
 using DeskTop.Util;
 
-namespace DeskTop.Sites
+namespace DeskTop.Views
 {
     /// <summary>
     /// Interaction logic for FrmEditPerson.xaml

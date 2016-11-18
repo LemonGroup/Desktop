@@ -14,7 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DeskTop.Util;
 
-namespace DeskTop.Persons
+
+namespace DeskTop.Views
 {
     /// <summary>
     /// Interaction logic for FrmEditPerson.xaml
