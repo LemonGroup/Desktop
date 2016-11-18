@@ -25,7 +25,7 @@ namespace DeskTop
             return item.Id;
         }
 
-        public SitesRepo(IEnumerable<Site> items) : base(items)
+        public SitesRepo() : base()
         {
             lastKey = -1;
         }

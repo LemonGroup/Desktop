@@ -25,7 +25,7 @@ namespace DeskTop
             return item.Name;
         }
 
-        public PersonRepo(IEnumerable<Person> items) : base(items)
+        public PersonRepo() : base()
         {
         }
     }
