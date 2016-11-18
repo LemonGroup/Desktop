@@ -18,14 +18,9 @@ namespace DeskTop
     /// <typeparam name="TKey"></typeparam>
     public abstract class AbstractRepo<T, TKey> where T : class
     {
-        protected AbstractRepo(IEnumerable<T> items)
+        protected AbstractRepo()
         {
             this.items = new SortedList<TKey, ItemConteiner>();
-            foreach (T item in items)
-            {
-                TKey key = GetKey(item);
-                this.items.Add(key, new ItemConteiner(item,ItemState.Default));
-            }
             deletedKeys = new SortedSet<TKey>();
         }
         public IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
@@ -68,6 +63,15 @@ namespace DeskTop
         {
             items.Remove(key);
             deletedKeys.Add(key);
+        }
+
+        public void Load(IEnumerable<T> items)
+        {
+            foreach (T item in items)
+            {
+                TKey key = GetKey(item);
+                this.items.Add(key, new ItemConteiner(item, ItemState.Default));
+            }
         }
         public abstract void Save();
         protected abstract TKey GetKey(T item);
