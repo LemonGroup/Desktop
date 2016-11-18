@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DeskTop.Persons;
+using DeskTop.Sites;
 
 namespace DeskTop
 {
@@ -20,7 +22,8 @@ namespace DeskTop
     /// </summary>
     public partial class MainWindow : Window
     {
-        protected Util.ElementSelector<string> siteSelector;
+        protected Util.ElementSelector<Site> siteSelector;
+        protected Util.ElementSelector<Person> personSelector;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,13 +31,17 @@ namespace DeskTop
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            siteSelector = new Util.ElementSelector<string>(Repos.Sites.Items.Select(i=>i.Url));
-            dgSites.DataContext = siteSelector.ToList(); // для того чтобы элементы можно было изменять (ставить голочки)
+            siteSelector = new Util.ElementSelector<Site>(Repos.Sites.Items);
+            dgSites.DataContext = siteSelector.ToList(); // List для того чтобы элементы можно было изменять (ставить голочки)
+            personSelector = new Util.ElementSelector<Person>(Repos.Persons.Items);
+            dgPersons.DataContext = personSelector.ToList();
+            dtaFrom.SelectedDate = DateTime.Now.AddDays(-1);
+            dtaTo.SelectedDate = DateTime.Now;
         }
 
         private void btnShowStat_Click(object sender, RoutedEventArgs e)
         {
-            dgKeyWords.DataContext = Statistics.GetStatistics(siteSelector.SelectedElements);
+            //dgKeyWords.DataContext = Statistics.GetStatistics(siteSelector.SelectedElements);
         }
 
         private void btnShowEveryDayStat_Click(object sender, RoutedEventArgs e)
