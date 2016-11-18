@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DeskTop.Properties
+namespace DeskTop.Views.Views.Properties
 {
 
 
