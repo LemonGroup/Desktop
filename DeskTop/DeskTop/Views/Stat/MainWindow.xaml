@@ -1,16 +1,13 @@
-﻿<Window x:Class="DeskTop.MainWindow"
+﻿<Window x:Class="DeskTop.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DeskTop"
-        xmlns:conv="clr-namespace:DeskTop.Util.Converters"
+        xmlns:local="clr-namespace:DeskTop.Views"
         mc:Ignorable="d"
         Title="LemonStat" Height="500" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <Grid.Resources>
-            <conv:TestConverter x:Key="TestConverter"></conv:TestConverter>
-        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition/>
@@ -36,8 +33,8 @@
     </Expander>
     <Expander Header="Справочники" Grid.Row="1">
         <DockPanel>
-            <Button DockPanel.Dock="Top" Name="btnPersonsEditor" Content="Редактор личностей" Margin="3" Click="btnShowStat_Click"/>
-            <Button DockPanel.Dock="Top" Name="btnSitesEditor" Content="Редактор сайтов" Margin="3" Click="btnShowEveryDayStat_Click"/>
+            <Button DockPanel.Dock="Top" Name="btnPersonsEditor" Content="Редактор личностей" Margin="3" Click="btnPersonsEditor_Click"/>
+            <Button DockPanel.Dock="Top" Name="btnSitesEditor" Content="Редактор сайтов" Margin="3" Click="btnSitesEditor_Click"/>
         </DockPanel>
             </Expander>
     <GroupBox Grid.Row="2" Header="Период" Margin="3">
@@ -61,13 +58,7 @@
     </DataGrid>
 
         </Grid>
-
-
-        <DataGrid Name="dgKeyWords" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.Row="1" Grid.Column="1">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding KeyWord}" Header="Персона" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Rank}" Header="Упоминаний" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+    <local:CtrlStat x:Name="ctrlStat" Grid.Column="1" Grid.Row="1" Width="230" HorizontalAlignment="Left" Margin="1"/>
+    <local:CtrlDaylyStat x:Name="ctrlDaylyStat" Grid.Column="1" Grid.Row="1" Margin="1" />
     </Grid>
 </Window>
