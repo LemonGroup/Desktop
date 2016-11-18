@@ -24,7 +24,8 @@ namespace DeskTop
             };
             return data;
         }
-        public static IEnumerable<StatRow> GetStatistics(IEnumerable<string> sites)
+        public static IEnumerable<StatRow> GetStatistics(DateTime from, DateTime to,
+            IEnumerable<Person> persons, IEnumerable<Site> sites)
         {
             // TODO Загрузка данных из базы
             // заглушка - возвращаем фейковые  данные
@@ -49,7 +50,8 @@ namespace DeskTop
             }
             return data;
         }
-        public static IEnumerable<StatRow> GetDaylyStat(DateTime from, DateTime to)
+        public static IEnumerable<StatRow> GetDaylyStat(DateTime from, DateTime to, 
+            IEnumerable<Person> persons, IEnumerable<Site> sites)
         {
             // TODO Загрузка данных из базы
             // заглушка - возвращаем фейковые  данные
