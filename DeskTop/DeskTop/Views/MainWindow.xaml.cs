@@ -20,15 +20,22 @@ namespace DeskTop.Views
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            siteSelector = new Util.ElementSelector<Site>(Repos.Sites.Items);
-            dgSites.DataContext = siteSelector.ToList(); // List для того чтобы элементы можно было изменять (ставить голочки)
-            personSelector = new Util.ElementSelector<Person>(Repos.Persons.Items);
-            dgPersons.DataContext = personSelector.ToList();
+            ReBindPersons();
+            ReBindSites();
             dtaFrom.SelectedDate = DateTime.Now.AddDays(-1);
             dtaTo.SelectedDate = DateTime.Now;
             SetStatVisible();
         }
-
+        private void ReBindPersons()
+        {
+            personSelector = new Util.ElementSelector<Person>(Repos.Persons.Items);
+            dgPersons.DataContext = personSelector.ToList();
+        }
+        private void ReBindSites()
+        {
+            siteSelector = new Util.ElementSelector<Site>(Repos.Sites.Items);
+            dgSites.DataContext = siteSelector.ToList(); // List для того чтобы элементы можно было изменять (ставить голочки)
+        }
         private void SetStatVisible()
         {
             ctrlDaylyStat.Visibility = Visibility.Collapsed;
@@ -59,12 +66,14 @@ namespace DeskTop.Views
         {
             var f = new FrmPersons();
             f.ShowDialog();
+            ReBindPersons();
         }
 
         private void btnSitesEditor_Click(object sender, RoutedEventArgs e)
         {
             var f = new FrmSites();
             f.ShowDialog();
+            ReBindSites();
         }
     }
 }
