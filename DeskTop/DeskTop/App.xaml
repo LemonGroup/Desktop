@@ -1,8 +1,8 @@
-﻿<Application x:Class="DeskTop.App"
+﻿<Application x:Class="DeskTop.Views.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DeskTop"
-             StartupUri="Views\FrmSites.xaml">
+             xmlns:local="clr-namespace:DeskTop.Views"
+             StartupUri="Views/Stat/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>

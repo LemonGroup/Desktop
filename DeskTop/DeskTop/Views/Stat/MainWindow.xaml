@@ -58,7 +58,7 @@
     </DataGrid>
 
         </Grid>
-    <local:CtrlStat x:Name="ctrlStat" Grid.Column="1" Grid.Row="1" Width="230" HorizontalAlignment="Left" Margin="1"/>
-    <local:CtrlDaylyStat x:Name="ctrlDaylyStat" Grid.Column="1" Grid.Row="1" Margin="1" />
+    <local:CtrlStat x:Name="ctrlStat" Grid.Column="1" Grid.Row="1" Width="250" HorizontalAlignment="Left" Margin="1"/>
+    <local:CtrlDaylyStat x:Name="ctrlDaylyStat" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Margin="1" />
     </Grid>
 </Window>

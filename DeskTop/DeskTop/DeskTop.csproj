@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,8 +58,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\AbstractRepo.cs" />
-    <Compile Include="Views\FrmDaylyStat.xaml.cs">
-      <DependentUpon>FrmDaylyStat.xaml</DependentUpon>
+    <Compile Include="Views\Stat\Converters.cs" />
+    <Compile Include="Views\Stat\CtrlDaylyStat.xaml.cs">
+      <DependentUpon>CtrlDaylyStat.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FrmEditPerson.xaml.cs">
       <DependentUpon>FrmEditPerson.xaml</DependentUpon>
@@ -80,11 +83,15 @@
     <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
     <Compile Include="Util\UiHelper.cs" />
-    <Page Include="Views\FrmDaylyStat.xaml">
+    <Page Include="Views\Stat\CtrlDaylyStat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\Stat\CtrlStat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Stat\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -92,7 +99,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
+    <Compile Include="Views\Stat\CtrlStat.xaml.cs">
+      <DependentUpon>CtrlStat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Stat\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

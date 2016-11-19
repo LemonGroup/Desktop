@@ -37,6 +37,7 @@ namespace DeskTop.Views
 
         private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            dgStat.Columns.Clear();
             var data = DataContext as IEnumerable<Statistics.StatRow>;
             if (data == null)
             {
@@ -50,7 +51,7 @@ namespace DeskTop.Views
             dateCol.Binding.StringFormat = "dd.MM.yyyy";
             dateCol.Width = 70;
             foreach (var keyword in keywords) // создание столбцов 
-                AddColToDgStat(keyword, Converters.ColConv, keyword);
+                 AddColToDgStat(keyword, Converters.ColConv, keyword);
             dgStat.DataContext = groupedData;
         }
     }

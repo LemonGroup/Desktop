@@ -41,7 +41,7 @@ namespace DeskTop.Views
         }
         private void btnShowStat_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<Statistics.StatRow> data = Statistics.GetDaylyStat(dtaFrom.SelectedDate.Value, dtaTo.SelectedDate.Value,
+            IEnumerable<Statistics.StatRow> data = Statistics.GetStatistics(dtaFrom.SelectedDate.Value, dtaTo.SelectedDate.Value,
                 personSelector.SelectedElements, siteSelector.SelectedElements);
             ctrlStat.DataContext = data;
             SetStatVisible();
@@ -49,7 +49,7 @@ namespace DeskTop.Views
 
         private void btnShowEveryDayStat_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<Statistics.StatRow> data = Statistics.GetDaylyStat(new DateTime(2016, 10, 25), new DateTime(2016, 11, 05),
+            IEnumerable<Statistics.StatRow> data = Statistics.GetDaylyStat(dtaFrom.SelectedDate.Value, dtaTo.SelectedDate.Value,
                 personSelector.SelectedElements, siteSelector.SelectedElements);
             ctrlDaylyStat.DataContext = data;
             SetDaylyStatVisible();
