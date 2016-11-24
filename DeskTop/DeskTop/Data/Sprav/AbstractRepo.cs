@@ -15,16 +15,22 @@ namespace DeskTop
     /// Изменения передаются в БД отложенно в методе save()
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <typeparam name="TKey"></typeparam>
-    public abstract class AbstractRepo<T, TKey> where T : class
+
+    public abstract class AbstractRepo<T> where T : class
     {
+        private SortedList<int, ItemConteiner> items;
+        private SortedSet<int> deletedKeys;
+        private int lasint; // счетчик id для создаваемых элементов, растет в сторону уменьшения
+        //(реальный id появится в БД)
+        protected int NextKey {get { return lasint - 1; } }
         protected AbstractRepo()
         {
-            this.items = new SortedList<TKey, ItemConteiner>();
-            deletedKeys = new SortedSet<TKey>();
+            this.items = new SortedList<int, ItemConteiner>();
+            deletedKeys = new SortedSet<int>();
+            lasint = -1;
         }
         public IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
-        public T this[TKey key]
+        public T this[int key]
         {
             get
             {
@@ -34,12 +40,10 @@ namespace DeskTop
             set { Add(value); }
         }
 
-        private SortedList<TKey, ItemConteiner> items;
-        private SortedSet<TKey> deletedKeys;
 
         public void Add(T item)
         {
-            TKey key = GetKey(item);
+            int key = GetKey(item);
             if (!items.ContainsKey(key)) items.Add(key, new ItemConteiner(item, ItemState.Created));
             else
             {
@@ -48,9 +52,9 @@ namespace DeskTop
             }           
         }
 
-        public void Update(TKey oldKey, T item)
+        public void Update(int oldKey, T item)
         {
-            TKey key = GetKey(item);
+            int key = GetKey(item);
             if (key.Equals(oldKey)) items[key].State = ItemState.Updated; // поле с ключем не изменилось
             else // в потивном случае удаляем элемент со старым ключем и доавляем под новым
             {
@@ -59,7 +63,7 @@ namespace DeskTop
             }
         }
 
-        public void Delete(TKey key)
+        public void Delete(int key)
         {
             items.Remove(key);
             deletedKeys.Add(key);
@@ -69,12 +73,12 @@ namespace DeskTop
         {
             foreach (T item in items)
             {
-                TKey key = GetKey(item);
+                int key = GetKey(item);
                 this.items.Add(key, new ItemConteiner(item, ItemState.Default));
             }
         }
         public abstract void Save();
-        protected abstract TKey GetKey(T item);
+        protected abstract int GetKey(T item);
         private enum ItemState
         {
             Default, Created, Updated
