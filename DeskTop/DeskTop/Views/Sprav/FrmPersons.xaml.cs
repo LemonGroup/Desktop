@@ -42,7 +42,7 @@ namespace DeskTop.Views
             foreach (object item in lstPersons.SelectedItems)
             {
                 var person = item as Person;
-                Repos.Persons.Delete(person.Name);
+                Repos.Persons.Delete(person.Id);
             }
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
@@ -53,10 +53,10 @@ namespace DeskTop.Views
         {
             if (lstPersons.SelectedItems.Count == 0) return;
             var person = (Person)lstPersons.SelectedItems[0];
-            string oldName = person.Name;
+            int oldId = person.Id;
             var f = new FrmEditPerson(person) { Title = "Редактивароние персоны" };
             if (f.ShowDialog() != true) return;
-            Repos.Persons.Update(oldName, person);
+            Repos.Persons.Update(oldId, person);
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)
