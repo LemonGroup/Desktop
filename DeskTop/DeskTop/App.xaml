@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:DeskTop.Views"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Style/LemonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+
     </Application.Resources>
 </Application>
