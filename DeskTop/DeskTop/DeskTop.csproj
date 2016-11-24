@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Web\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -83,6 +86,7 @@
     <Compile Include="Util\Converters.cs" />
     <Compile Include="Util\ElementSelector.cs" />
     <Compile Include="Util\UiHelper.cs" />
+    <Compile Include="Web\DataLoader.cs" />
     <Page Include="Views\Stat\CtrlDaylyStat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

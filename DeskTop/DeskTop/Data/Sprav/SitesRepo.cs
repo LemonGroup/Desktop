@@ -8,17 +8,15 @@ using System.Windows;
 
 namespace DeskTop
 {
-    public class SitesRepo : AbstractRepo<Site, int>
+    public class SitesRepo : AbstractRepo<Site>
     {
-        private int lastKey; // счетчик id для создаваемых элементов, растет в сторону уменьшения
-        //(реальный id появится в БД)
-        public Site Create(string url) { return new Site(lastKey--, url); }
+
+        public Site Create(string url) { return new Site(NextKey, url); }
 
         public override void Save()
         {
             MessageBox.Show("Сайты сохранены (заглушка)");
         }
-
         protected override int GetKey(Site item)
         {
             return item.Id;
@@ -26,7 +24,7 @@ namespace DeskTop
 
         public SitesRepo() : base()
         {
-            lastKey = -1;
+
         }
     }
 }
