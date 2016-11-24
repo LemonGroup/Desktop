@@ -10,13 +10,14 @@ namespace DeskTop
         private static PersonRepo _personRepo;
         static Repos()
         {
-            var dl = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
-            _sitesRepo = new SitesRepo();
-            _personRepo = new PersonRepo(dl);
+            var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
+            var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
+            _sitesRepo = new SitesRepo(dlSites);
+            _personRepo = new PersonRepo(dlPerosns);
 
             // fake data
-            /*
-            _sitesRepo.Add(new Site(1, "www.site1.ru"));
+            
+           /* _sitesRepo.Add(new Site(1, "www.site1.ru"));
             _sitesRepo.Add(new Site(2, "www.site2.ru"));
             _sitesRepo.Add(new Site(3, "www.site3.ru"));
             _personRepo.Add(new Person("Путин"));

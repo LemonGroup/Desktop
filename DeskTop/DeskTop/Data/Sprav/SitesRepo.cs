@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DeskTop.Web;
 
 
 namespace DeskTop
@@ -22,8 +23,20 @@ namespace DeskTop
             return item.Id;
         }
 
-        public SitesRepo() : base()
+        public SitesRepo() : base()  { }
+        public SitesRepo(DataLoader loader) : base()
         {
+            var data = loader.GetData<JsonSite>();
+            foreach (JsonSite jsonSite in data)
+            {
+                Site site = new Site(jsonSite.id, jsonSite.site);
+                Add(site);
+            }
+        }
+        private class JsonSite
+        {
+            public int id;
+            public string site;
 
         }
     }
