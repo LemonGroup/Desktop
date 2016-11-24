@@ -12,8 +12,9 @@ namespace DeskTop
         {
             var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
             var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
+            var dlKW = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/keywords");
             _sitesRepo = new SitesRepo(dlSites);
-            _personRepo = new PersonRepo(dlPerosns);
+            _personRepo = new PersonRepo(dlPerosns, dlKW);
 
             // fake data
             

@@ -26,7 +26,7 @@ namespace DeskTop
         public SitesRepo() : base()  { }
         public SitesRepo(DataLoader loader) : base()
         {
-            var data = loader.GetData<JsonSite>();
+            var data = loader.GetData<SitesRepo.JsonSite>();
             foreach (JsonSite jsonSite in data)
             {
                 Site site = new Site(jsonSite.id, jsonSite.site);
@@ -39,5 +39,6 @@ namespace DeskTop
             public string site;
 
         }
+
     }
 }
