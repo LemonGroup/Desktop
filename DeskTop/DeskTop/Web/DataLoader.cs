@@ -12,24 +12,17 @@ using Newtonsoft.Json;
 
 namespace DeskTop.Web
 {
-    public class DataLoader
+    public class DataLoader : RestBase
     {
         public string serverAdres;
         public string path;
 
-        public DataLoader(string server, string path)
-        {
-            serverAdres = server;
-            this.path = path;
-        }
+        public DataLoader(string server, string path) : base(server, path) { }
+
 
         public T[] GetData<T>()
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(serverAdres + path);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Accept = "*/*";
-            httpWebRequest.Method = "GET";
-            httpWebRequest.Headers.Add("Auth-Token", "this-is-fake-token");
+            var httpWebRequest = GetRequest(METHOD_GET);
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             string answer = "";
