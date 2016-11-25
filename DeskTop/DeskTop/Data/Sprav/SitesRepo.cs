@@ -26,19 +26,12 @@ namespace DeskTop
         public SitesRepo() : base()  { }
         public SitesRepo(DataLoader loader) : base()
         {
-            var data = loader.GetData<SitesRepo.JsonSite>();
-            foreach (JsonSite jsonSite in data)
+            var data = loader.GetData<JsonClasses.JsonSite>();
+            foreach (JsonClasses.JsonSite jsonSite in data)
             {
                 Site site = new Site(jsonSite.id, jsonSite.site);
                 Add(site);
             }
         }
-        private class JsonSite
-        {
-            public int id;
-            public string site;
-
-        }
-
     }
 }
