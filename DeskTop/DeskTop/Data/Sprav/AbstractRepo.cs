@@ -21,6 +21,7 @@ namespace DeskTop
         private SortedList<int, ItemConteiner> items;
         private int lasint; // счетчик id для создаваемых элементов, растет в сторону уменьшения
         //(реальный id появится в БД)
+        private CrudSprav<T> crud;
         protected int NextKey {get { return lasint - 1; } }
         protected AbstractRepo()
         {
@@ -29,6 +30,7 @@ namespace DeskTop
         }
         protected AbstractRepo(DataLoader loader) : this()
         {
+            crud = new CrudSprav<T>(loader.serverAdres, loader.path);
             var data = RestSerializer.DeserializeArr<T>(loader.GetData());
             foreach (var item in data)
                 Add(item);
@@ -75,7 +77,20 @@ namespace DeskTop
                 this.items.Add(key, new ItemConteiner(item, ItemState.Default));
             }
         }
-        public abstract void Save();
+
+        private IEnumerable<T> GetItems(ItemState state)
+        {
+            return items.Values.Where(i => i.State == state).Select(i => i.Item);
+        }
+        public void Save()
+        {
+            foreach (var item in GetItems(ItemState.Deleted))
+                crud.Delete(GetKey(item));
+            foreach (var item in GetItems(ItemState.Updated))
+                crud.Update(item);
+            foreach (var item in GetItems(ItemState.Created))
+                crud.Create(item);
+        }
         protected abstract int GetKey(T item);
         public abstract T Create(string par);
         private enum ItemState

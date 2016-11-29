@@ -17,11 +17,6 @@ namespace DeskTop
         {
             return new KeyWord(NextKey, par);
         }
-
-        public override void Save()
-        {
-            MessageBox.Show("Ключевые слова сохранены (заглушка)");
-        }
         protected override int GetKey(KeyWord item)
         {
             return item.Id;

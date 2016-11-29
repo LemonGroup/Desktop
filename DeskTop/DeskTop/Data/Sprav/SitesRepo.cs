@@ -11,10 +11,6 @@ namespace DeskTop
 {
     public class SitesRepo : AbstractRepo<Site>
     {
-        public override void Save()
-        {
-            MessageBox.Show("Сайты сохранены (заглушка)");
-        }
         public override Site Create(string par)
         {
             return new Site(NextKey, par);
