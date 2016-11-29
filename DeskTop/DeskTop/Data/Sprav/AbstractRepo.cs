@@ -20,14 +20,12 @@ namespace DeskTop
     public abstract class AbstractRepo<T> where T : class
     {
         private SortedList<int, ItemConteiner> items;
-        private SortedSet<int> deletedKeys;
         private int lasint; // счетчик id для создаваемых элементов, растет в сторону уменьшения
         //(реальный id появится в БД)
         protected int NextKey {get { return lasint - 1; } }
         protected AbstractRepo()
         {
             this.items = new SortedList<int, ItemConteiner>();
-            deletedKeys = new SortedSet<int>();
             lasint = -1;
         }
         protected AbstractRepo(DataLoader loader) : this()
@@ -72,8 +70,7 @@ namespace DeskTop
 
         public void Delete(int key)
         {
-            items.Remove(key);
-            deletedKeys.Add(key);
+            items[key].State = ItemState.Deleted;
         }
 
         public void Load(IEnumerable<T> items)
@@ -89,7 +86,7 @@ namespace DeskTop
         public abstract T Create(string par);
         private enum ItemState
         {
-            Default, Created, Updated
+            Default, Created, Updated, Deleted
         }
         private class ItemConteiner
         {
