@@ -12,7 +12,6 @@ namespace DeskTop
     /// <summary>
     /// Абстрактный репозиторий. Хранит параллельно с элементами состояние (ItemState создан, обновлен, без изменений)
     /// Доступ к элементам по индексатору. 
-    /// !!! При реализации сохранения сначала удалять удаленные элементы во избежание возможных конфликтов
     /// Изменения передаются в БД отложенно в методе save()
     /// </summary>
     /// <typeparam name="T"></typeparam>
@@ -34,12 +33,12 @@ namespace DeskTop
             foreach (var item in data)
                 Add(item);
         }
-        public IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
+        public IEnumerable<T> Items { get { return items.Values.Where(i=>i.State != ItemState.Deleted).Select(i=>i.Item); } }
         public T this[int key]
         {
             get
             {
-                if (items.ContainsKey(key)) return items[key].Item;
+                if (items.ContainsKey(key) && items[key].State != ItemState.Deleted) return items[key].Item;
                 return null;
             }
             set { Add(value); }
