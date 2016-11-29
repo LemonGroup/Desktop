@@ -61,6 +61,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\Sprav\AbstractRepo.cs" />
+    <Compile Include="Data\Sprav\KeyWord.cs" />
+    <Compile Include="Data\Sprav\KeyWordRepo.cs" />
     <Compile Include="Views\Stat\Converters.cs" />
     <Compile Include="Views\Stat\CtrlDaylyStat.xaml.cs">
       <DependentUpon>CtrlDaylyStat.xaml</DependentUpon>
@@ -88,7 +90,7 @@
     <Compile Include="Util\UiHelper.cs" />
     <Compile Include="Web\CrudSprav.cs" />
     <Compile Include="Web\DataLoader.cs" />
-    <Compile Include="Web\JsonClasses.cs" />
+    <Compile Include="Web\RestSerializer.cs" />
     <Compile Include="Web\RestBase.cs" />
     <Page Include="Views\Stat\CtrlDaylyStat.xaml">
       <SubType>Designer</SubType>

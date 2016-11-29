@@ -28,7 +28,7 @@ namespace DeskTop.Views
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var person = new Person("");
+            var person = Repos.Persons.Create("");
             var f = new FrmEditPerson(person) {Title = "Добавление персоны"};
             if (f.ShowDialog()!=true) return;
             Repos.Persons.Add(person);

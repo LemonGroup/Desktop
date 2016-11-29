@@ -20,7 +20,7 @@ namespace DeskTop.Web
         public DataLoader(string server, string path) : base(server, path) { }
 
 
-        public T[] GetData<T>()
+        public string GetData()
         {
             var httpWebRequest = GetRequest(METHOD_GET);
 
@@ -30,8 +30,7 @@ namespace DeskTop.Web
             {
                 answer = streamReader.ReadToEnd();
             }
-            var deserializedArr = JsonConvert.DeserializeObject<T[]>(answer);
-            return deserializedArr;
+            return answer;
 
         }
     }

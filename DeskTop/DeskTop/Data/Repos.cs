@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+using System.Windows;
 using DeskTop.Web;
 
 namespace DeskTop
@@ -8,13 +10,23 @@ namespace DeskTop
     {
         private static SitesRepo _sitesRepo;
         private static PersonRepo _personRepo;
+        private static KeyWordRepo _keyWordRepo;
         static Repos()
         {
-            var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
-            var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
-            var dlKW = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/keywords");
-            _sitesRepo = new SitesRepo(dlSites);
-            _personRepo = new PersonRepo(dlPerosns, dlKW);
+            try
+            {
+                var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
+                var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
+                var dlKW = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/keywords");
+                _sitesRepo = new SitesRepo(dlSites);
+                _personRepo = new PersonRepo(dlPerosns);
+                _keyWordRepo = new KeyWordRepo(dlKW);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка загрузки справочников!");
+            }
+
 
             // fake data
             
@@ -27,6 +39,7 @@ namespace DeskTop
         }
         public static PersonRepo Persons { get { return _personRepo; } }
         public static SitesRepo Sites { get { return _sitesRepo; } }
+        public static KeyWordRepo KeyWords { get { return _keyWordRepo;} }
 
     }
 }

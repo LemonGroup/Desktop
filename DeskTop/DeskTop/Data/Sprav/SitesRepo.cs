@@ -11,27 +11,19 @@ namespace DeskTop
 {
     public class SitesRepo : AbstractRepo<Site>
     {
-
-        public Site Create(string url) { return new Site(NextKey, url); }
-
         public override void Save()
         {
             MessageBox.Show("Сайты сохранены (заглушка)");
+        }
+        public override Site Create(string par)
+        {
+            return new Site(NextKey, par);
         }
         protected override int GetKey(Site item)
         {
             return item.Id;
         }
-
         public SitesRepo() : base()  { }
-        public SitesRepo(DataLoader loader) : base()
-        {
-            var data = loader.GetData<JsonClasses.JsonSite>();
-            foreach (JsonClasses.JsonSite jsonSite in data)
-            {
-                Site site = new Site(jsonSite.id, jsonSite.site);
-                Add(site);
-            }
-        }
+        public SitesRepo(DataLoader loader) : base(loader) { }
     }
 }

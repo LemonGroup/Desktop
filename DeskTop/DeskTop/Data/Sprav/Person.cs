@@ -8,8 +8,9 @@ namespace DeskTop
 {
     public class Person
     {
-        public Person(string name)
+        public Person(int id, string name)
         {
+            Id = id;
             KeyWords = new List<string>();
             Name = name;
         }

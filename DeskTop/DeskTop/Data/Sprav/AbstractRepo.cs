@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using DeskTop.Web;
 
 
 namespace DeskTop
@@ -28,6 +29,12 @@ namespace DeskTop
             this.items = new SortedList<int, ItemConteiner>();
             deletedKeys = new SortedSet<int>();
             lasint = -1;
+        }
+        protected AbstractRepo(DataLoader loader) : this()
+        {
+            var data = RestSerializer.DeserializeArr<T>(loader.GetData());
+            foreach (var item in data)
+                Add(item);
         }
         public IEnumerable<T> Items { get { return items.Values.Select(i=>i.Item); } }
         public T this[int key]
@@ -79,6 +86,7 @@ namespace DeskTop
         }
         public abstract void Save();
         protected abstract int GetKey(T item);
+        public abstract T Create(string par);
         private enum ItemState
         {
             Default, Created, Updated
