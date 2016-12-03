@@ -19,8 +19,9 @@ namespace DeskTop
                 var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
                 var dlKW = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/keywords");
                 _sitesRepo = new SitesRepo(dlSites);
-                _personRepo = new PersonRepo(dlPerosns);
                 _keyWordRepo = new KeyWordRepo(dlKW);
+                _personRepo = new PersonRepo(dlPerosns);
+
             }
             catch (Exception ex)
             {
