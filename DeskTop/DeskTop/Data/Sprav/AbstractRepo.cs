@@ -18,11 +18,11 @@ namespace DeskTop
 
     public abstract class AbstractRepo<T> where T : class
     {
-        private SortedList<int, ItemConteiner> items;
+        protected SortedList<int, ItemConteiner> items;
         private int lasint; // счетчик id для создаваемых элементов, растет в сторону уменьшения
         //(реальный id появится в БД)
-        private CrudSprav<T> crud;
-        protected int NextKey {get { return lasint - 1; } }
+        protected CrudSprav<T> crud;
+        protected int NextKey {get { return lasint--; } }
         protected AbstractRepo()
         {
             this.items = new SortedList<int, ItemConteiner>();
@@ -33,7 +33,7 @@ namespace DeskTop
             crud = new CrudSprav<T>(loader.serverAdres, loader.path);
             var data = RestSerializer.DeserializeArr<T>(loader.GetData());
             foreach (var item in data)
-                Add(item);
+                items.Add(GetKey(item), new ItemConteiner(item, ItemState.Default));
         }
         public IEnumerable<T> Items { get { return items.Values.Where(i=>i.State != ItemState.Deleted).Select(i=>i.Item); } }
         public T this[int key]
@@ -61,12 +61,14 @@ namespace DeskTop
         public void Update(T item)
         {
             int key = GetKey(item);
+            if (!items.ContainsKey(key)) return;
             items[key].State = ItemState.Updated;
         }
 
         public void Delete(int key)
         {
-            items[key].State = ItemState.Deleted;
+            if (items.ContainsKey(key))
+                items[key].State = ItemState.Deleted;
         }
 
         public void Load(IEnumerable<T> items)
@@ -78,26 +80,50 @@ namespace DeskTop
             }
         }
 
-        private IEnumerable<T> GetItems(ItemState state)
+        protected IEnumerable<T> GetItems(ItemState state)
         {
-            return items.Values.Where(i => i.State == state).Select(i => i.Item);
+            return items.Values.Where(i => i.State == state).Select(i => i.Item).ToArray();
         }
-        public void Save()
+        public virtual void Save()
+        {
+            SaveDeleted();
+            SaveCreated();
+            SaveUpdated();
+        }
+
+        protected virtual void SaveCreated()
+        {
+            foreach (var item in GetItems(ItemState.Created))
+            {
+                crud.Create(item);
+                items[GetKey(item)].State = ItemState.Default;
+            }       
+        }
+
+        protected virtual void SaveDeleted()
         {
             foreach (var item in GetItems(ItemState.Deleted))
+            {
                 crud.Delete(GetKey(item));
+                items.Remove(GetKey(item));
+            }                 
+        }
+
+        protected virtual void SaveUpdated()
+        {
             foreach (var item in GetItems(ItemState.Updated))
+            {
                 crud.Update(item);
-            foreach (var item in GetItems(ItemState.Created))
-                crud.Create(item);
+                items[GetKey(item)].State = ItemState.Default;
+            }
         }
         protected abstract int GetKey(T item);
         public abstract T Create(string par);
-        private enum ItemState
+        protected enum ItemState
         {
             Default, Created, Updated, Deleted
         }
-        private class ItemConteiner
+        protected class ItemConteiner
         {
             public T Item;
             public ItemState State;
