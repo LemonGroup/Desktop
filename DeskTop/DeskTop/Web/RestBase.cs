@@ -9,12 +9,13 @@ namespace DeskTop.Web
 {
     public abstract class RestBase
     {
-        private string serverAdres;
-        private string path;
+        public string serverAdres;
+        public string path;
 
         public const string METHOD_GET = "GET";
         public const string METHOD_POST = "POST";
         public const string METHOD_PUT = "PUT";
+        public const string METHOD_DEL = "DELETE";
 
         public RestBase(string server, string path)
         {
@@ -22,9 +23,10 @@ namespace DeskTop.Web
             this.path = path;
         }
 
-        public HttpWebRequest GetRequest(string method)
+        public HttpWebRequest GetRequest(string method, string parsStr = "")
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(serverAdres + path);
+            if (parsStr != "") parsStr = "/" + parsStr;
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(serverAdres + path + parsStr);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Accept = "*/*";
             httpWebRequest.Method = method;

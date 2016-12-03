@@ -14,15 +14,12 @@ namespace DeskTop.Web
 {
     public class DataLoader : RestBase
     {
-        public string serverAdres;
-        public string path;
-
         public DataLoader(string server, string path) : base(server, path) { }
 
 
-        public string GetData()
+        public string GetData(string getStr = "")
         {
-            var httpWebRequest = GetRequest(METHOD_GET);
+            var httpWebRequest = GetRequest(METHOD_GET, getStr);
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             string answer = "";

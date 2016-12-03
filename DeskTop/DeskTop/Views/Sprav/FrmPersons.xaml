@@ -22,7 +22,7 @@
             <Button Name="btnAdd" Content="Добавить" Margin="2" Click="btnAdd_Click"/>
             <Button Name="btnEdit" Content="Изменить" Margin="2" Click="btnEdit_Click"/>
             <Button Name="btnDelete" Content="Удалить" Margin="2" Click="btnDelete_Click"/>
-            <Button Name="btnSave" Content="Сохранить" Margin="2"/>
+            <Button Name="btnSave" Content="Сохранить" Margin="2" Click="btnSave_Click"/>
         </StackPanel>
         <Button Name="btnOK" Content="ОК" IsDefault="True" Width="80"
                 Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Click="btnOK_Click"/>

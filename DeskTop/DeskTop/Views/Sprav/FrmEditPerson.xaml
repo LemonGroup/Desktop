@@ -18,7 +18,7 @@
         </StackPanel>
         <DataGrid Name="dgKeyWords" AutoGenerateColumns="False" Grid.Row="1" Margin="5" ItemsSource="{Binding KeyWords}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Ключевые слова" Width="*" Binding="{Binding .}"/>
+                <DataGridTextColumn Header="Ключевые слова" Width="*" Binding="{Binding Word}" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid Grid.Row="2">

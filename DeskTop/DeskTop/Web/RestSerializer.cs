@@ -19,20 +19,36 @@ namespace DeskTop.Web
             if (site != null) return new JsonSite(site).ToString();
             var person = item as Person;
             if (person != null) return new JsonPerson(person).ToString();
+            var keyWord = item as KeyWord;
+            if (keyWord != null) return new JsonKeyWord(keyWord).ToString();
             throw new ArrayTypeMismatchException($"Невозможно сериализовать в Json {item.GetType()}");
         }
 
         public static T Deserialize<T>(string str) where T : class
         {
-            var resObj = JsonConvert.DeserializeObject(str);
-            var keyWord = resObj as JsonKeyWord;
-            if (keyWord != null) return (T)(object)keyWord.ToT();
-            var site = resObj as JsonSite;
-            if (site != null) return (T)(object)site.ToT();
-            var person = resObj as JsonPerson;
-            if (person != null) return (T)(object)person.ToT();
+            if (typeof(T) == typeof(KeyWord))
+            {
+                var jkeyWord = JsonConvert.DeserializeObject<JsonKeyWord>(str);
+                return (T)(object)jkeyWord.ToT();
+            }
+            if (typeof(T) == typeof(Site))
+            {
+                var jsite = JsonConvert.DeserializeObject<JsonSite>(str);
+                return (T)(object)jsite.ToT();
+            }
+            if (typeof(T) == typeof(Person))
+            {
+                var jperson = JsonConvert.DeserializeObject<JsonPerson>(str);
+                return (T)(object)jperson.ToT();
+            }
 
             throw new ArrayTypeMismatchException($"Невозможно десериализовать из Json {typeof(T)}");
+        }
+
+        public static string KeyWordCreate(KeyWord kw)
+        {
+            return String.Format("{{\"personId\":{0},\"keyword\":\"{1}\"}}", kw.personId, kw.Word);
+
         }
         public static T[] DeserializeArr<T>(string str) where T : class
         {
@@ -92,6 +108,13 @@ namespace DeskTop.Web
             public int id;
             public int personId;
             public string keyword;
+            public JsonKeyWord() { }
+            public JsonKeyWord(KeyWord kw)
+            {
+                id = kw.Id;
+                personId = kw.personId;
+                keyword = kw.Word;
+            }
             public override KeyWord ToT()
             {
                 return new KeyWord(id, keyword) {personId = personId};

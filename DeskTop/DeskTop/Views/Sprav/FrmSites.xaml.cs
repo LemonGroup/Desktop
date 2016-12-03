@@ -53,10 +53,10 @@ namespace DeskTop.Views
         {
             if (lstSites.SelectedItems.Count == 0) return;
             var site = (Site)lstSites.SelectedItems[0];
-            int oldId = site.Id;
+            site.BeginEdit();
             var f = new FrmEditSite(site) { Title = "Редактивароние сайта" };
             if (f.ShowDialog() != true) return;
-            Repos.Sites.Update(oldId, site);
+            site.EndEdit();
             UiHelper.RefreshCollection(lstSites.ItemsSource);
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)

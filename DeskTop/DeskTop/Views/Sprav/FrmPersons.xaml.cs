@@ -53,15 +53,20 @@ namespace DeskTop.Views
         {
             if (lstPersons.SelectedItems.Count == 0) return;
             var person = (Person)lstPersons.SelectedItems[0];
-            int oldId = person.Id;
             var f = new FrmEditPerson(person) { Title = "Редактивароние персоны" };
             if (f.ShowDialog() != true) return;
-            Repos.Persons.Update(oldId, person);
             UiHelper.RefreshCollection(lstPersons.ItemsSource);
         }
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
+
             Close();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Repos.Persons.Save();
+            Repos.KeyWords.Save();
         }
     }
 }

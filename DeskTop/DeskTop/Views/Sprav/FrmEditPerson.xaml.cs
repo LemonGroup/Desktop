@@ -27,10 +27,12 @@ namespace DeskTop.Views
         {
             InitializeComponent();
             DataContext = this.person = person;
+            person.BeginEdit();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            person.EndEdit();
             DialogResult = true;
         }
 
@@ -47,7 +49,9 @@ namespace DeskTop.Views
                 MessageBox.Show("Добавляемое слово не должно быть пустым!");
                 return;
             }
-            person.KeyWords.Add(keyWord);
+            var kw = Repos.KeyWords.Create(keyWord);
+            person.KeyWords.Add(kw);
+            Repos.KeyWords.Add(kw);
             UiHelper.RefreshCollection(dgKeyWords.ItemsSource);
         }
     }
