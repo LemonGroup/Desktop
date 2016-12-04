@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Automation.Peers;
+using DeskTop.Util;
 using DeskTop.Web;
 
 namespace DeskTop
@@ -11,55 +13,83 @@ namespace DeskTop
     public static class Statistics
     {
         private static Random rnd;
+        public static Status Status;
+        public static Status StatusDayly;
+
+        static Statistics()
+        {
+            Status = new Status(0);
+            StatusDayly = new Status(0);
+        }
         private static int GetRnd()
         {
             if (rnd == null) rnd = new Random();
+            Thread.Sleep(100);
             return rnd.Next(0, 10);
         }
-        public static IEnumerable<StatRow> GetStatistics(DateTime from, DateTime to,
+        public static async Task<IEnumerable<StatRow>> GetStatistics(DateTime from, DateTime to,
             IEnumerable<Person> persons, IEnumerable<Site> sites)
         {
-            
-            var data = GetDaylyStat(from, to, persons, sites).GroupBy(d => d.Person);
-            foreach (var grp in data)
-            {
+            var result = new List<StatRow>();
+            Status.Max = persons.Count();
+            Status.Current = 0;
+            /*var data = await GetDaylyStat(from, to, persons, sites);
+            var gData = data.GroupBy(d => d.Person);
+            foreach (var grp in gData)
                 if (grp.Any())
-                    yield return new StatRow(grp.Key, grp.Sum(p=>p.Rank), grp.First().Date);
-            }
-
+                    result.Add(new StatRow(grp.Key, grp.Sum(p => p.Rank), grp.First().Date));
+*/
 
             // заглушка - возвращаем фейковые  данные
 
-            /*int days = (int)(to - from).TotalDays + 1; // +1 чтобы не было нуля
-            foreach (Person person in persons)
-                yield return new StatRow(person.Name, GetRnd()*days, from);*/
+            int days = (int)(to - from).TotalDays + 1; // +1 чтобы не было нуля
+            return await Task<IEnumerable<StatRow>>.Factory.StartNew(() =>
+            {
+                foreach (Person person in persons)
+                {
+                    Status.CurName = person.Name;
+                    Status.Current++;
+                    result.Add(new StatRow(person.Name, GetRnd()*days * sites.Count(), @from));
+                }
 
+                return result;
+            });
 
         }
-        public static IEnumerable<StatRow> GetDaylyStat(DateTime from, DateTime to, 
+        public static async Task<IEnumerable<StatRow>> GetDaylyStat(DateTime from, DateTime to, 
             IEnumerable<Person> persons, IEnumerable<Site> sites)
         {
+            var result = new List<StatRow>();
 
-            foreach (Person person in persons)
+            /*foreach (Person person in persons)
             {
+
                 foreach (Site site in sites)
                 {
-                    var data = StatLoader.GetStatistics(from, to, person, site);
+                    var data = await StatLoader.GetStatistics(from, to, person, site);
                     foreach (StatLoader.DataRow dataRow in data)
-                    {
-                        yield return new StatRow(person.Name, dataRow.numberOfNewPages, dataRow.Date);
-                    }
+                        result.Add(new StatRow(person.Name, dataRow.numberOfNewPages, dataRow.Date));
                 }
-            }
+
+            }*/
             // заглушка - возвращаем фейковые  данные
-            /* List<StatRow> data = new List<StatRow>();
-             int days = (int)(to - from).TotalDays;
-             for(int i = 0; i<days; i++)
-             {
-                 DateTime date = from.AddDays(i);
-                 data.AddRange(GetStatistics(date,date, persons, sites));
-             }
-             return data;*/
+            int days = (int)(to - from).TotalDays;
+            StatusDayly.Max = days;
+            StatusDayly.Current = 0;
+            return await Task<IEnumerable<StatRow>>.Factory.StartNew(() =>
+            {
+                for (int i = 0; i < days; i++)
+                {
+                    DateTime date = from.AddDays(i);
+                    StatusDayly.CurName = "Дата: " + date.ToString("yyyy-mm-dd");
+                    StatusDayly.Current = i;
+                    var data = GetStatistics(date, date, persons, sites).Result;
+                    result.AddRange(data);
+                }
+                return result;
+
+            });
+
         }
 
         public class StatRow

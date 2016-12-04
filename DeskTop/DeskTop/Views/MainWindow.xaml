@@ -46,14 +46,14 @@
             <DataGrid Name="dgPersons" ItemsSource="{Binding}" Grid.Row="3" AutoGenerateColumns="False" Margin="1">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
-                <DataGridTextColumn Binding="{Binding Value}" Header="Личность" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Личность" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>
             </DataGrid>
             <GridSplitter Height="6" HorizontalAlignment="Stretch" Grid.Row="4"/>
             <DataGrid Name="dgSites" ItemsSource="{Binding}" Grid.Row="5" AutoGenerateColumns="False" Margin="1">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding Selected}"/>
-                <DataGridTextColumn Binding="{Binding Value}" Header="Сайт" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Value}" Header="Сайт" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>
     </DataGrid>
 

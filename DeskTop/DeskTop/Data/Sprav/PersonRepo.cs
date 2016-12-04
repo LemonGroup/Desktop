@@ -36,13 +36,17 @@ namespace DeskTop
             }
         }
 
-        public PersonRepo(DataLoader loader) : base(loader)
+        public void KeywordsToPersons()
         {
             foreach (var person in Items)
             {
                 var keywords = Repos.KeyWords.Items.Where(i => i.personId == person.Id);
                 person.KeyWords.AddRange(keywords);
-            }
+            }            
+        }
+        public PersonRepo(DataLoader loader) : base(loader)
+        {
+            KeywordsToPersons();
         }
     }
 }

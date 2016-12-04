@@ -45,7 +45,7 @@ namespace DeskTop.Views
                 return;
             }
             var groupedData = data.GroupBy(r => r.Date);
-            var keywords = data.Select(r => r.KeyWord).Distinct();
+            var keywords = data.Select(r => r.Person).Distinct();
             AddColToDgStat("Дата", Converters.DateColConv, keywords.First());
             var dateCol = dgStat.Columns[0] as DataGridTextColumn;
             dateCol.Binding.StringFormat = "dd.MM.yyyy";

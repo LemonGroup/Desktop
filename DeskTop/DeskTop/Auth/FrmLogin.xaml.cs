@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,20 +11,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DeskTop.Views;
 
-namespace DeskTop.Util
+namespace DeskTop.Auth
 {
     /// <summary>
-    /// Interaction logic for StatusIndicator.xaml
+    /// Interaction logic for FrmLogin.xaml
     /// </summary>
-    public partial class StatusIndicator : Window
+    public partial class FrmLogin : Window
     {
-        public Status SIndicator;
-        public StatusIndicator(Status status)
+        public FrmLogin()
         {
             InitializeComponent();
-            SIndicator = status;
-            this.DataContext = SIndicator;
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+
+            var f = new MainWindow();
+            f.Show();
+            Close();
         }
     }
 }

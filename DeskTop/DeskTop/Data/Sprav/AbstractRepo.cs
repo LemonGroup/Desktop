@@ -31,7 +31,9 @@ namespace DeskTop
         protected AbstractRepo(DataLoader loader) : this()
         {
             crud = new CrudSprav<T>(loader.serverAdres, loader.path);
-            var data = RestSerializer.DeserializeArr<T>(loader.GetData());
+
+            var task = loader.GetData();
+            var data = RestSerializer.DeserializeArr<T>(task.Result);
             foreach (var item in data)
                 items.Add(GetKey(item), new ItemConteiner(item, ItemState.Default));
         }

@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding KeyWord}" Header="Персона" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Person}" Header="Персона" Width="150"/>
                 <DataGridTextColumn Binding="{Binding Rank}" Header="Упоминаний" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

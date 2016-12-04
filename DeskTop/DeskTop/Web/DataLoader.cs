@@ -17,11 +17,11 @@ namespace DeskTop.Web
         public DataLoader(string server, string path) : base(server, path) { }
 
 
-        public string GetData(string getStr = "")
+        public async Task<string> GetData(string getStr = "")
         {
             var httpWebRequest = GetRequest(METHOD_GET, getStr);
 
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var httpResponse = (HttpWebResponse) await httpWebRequest.GetResponseAsync();
             string answer = "";
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {

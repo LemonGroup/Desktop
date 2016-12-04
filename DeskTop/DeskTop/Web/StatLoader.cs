@@ -17,19 +17,16 @@ namespace DeskTop.Web
             dlStat = new DataLoader("http://yrsoft.cu.cc:8080", "/stat/daily_stat");
         }
 
-        public static IEnumerable<DataRow> GetStatistics(DateTime from, DateTime to,
+        public static async Task<IEnumerable<DataRow>> GetStatistics(DateTime from, DateTime to,
             Person person, Site site)
         {
             var getStr = string.Format("?siteId={0}&personId={1}&start_date={2}&end_date={3}\'",
                 site.Id, person.Id, from.ToString(DATE_FORMAT), to.ToString(DATE_FORMAT));
-            var strData = dlStat.GetData(getStr);
-            if (string.IsNullOrEmpty(strData)) yield break;
+            var strData = await dlStat.GetData(getStr);
+            if (string.IsNullOrEmpty(strData)) return new DataRow[0];
             var data = JsonConvert.DeserializeObject<DataRow[]>(strData);
-            foreach (DataRow row in data)
-            {
-                yield return row;
-            }
-                
+            return data;
+
         }
         public class DataRow
         {

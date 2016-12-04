@@ -38,7 +38,7 @@ namespace DeskTop.Views
             {
                 var data = value as IEnumerable<Statistics.StatRow>;
                 if (data == null) return null;
-                IEnumerable<Statistics.StatRow> resRows = data.Where(r => r.KeyWord == parameter.ToString());
+                IEnumerable<Statistics.StatRow> resRows = data.Where(r => r.Person == parameter.ToString());
                 if (!resRows.Any()) return null;
                 return resRows.First();
             }

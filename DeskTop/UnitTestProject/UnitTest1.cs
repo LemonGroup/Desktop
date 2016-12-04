@@ -18,5 +18,13 @@ namespace UnitTestProject
             var tmp = new CrudSprav<DeskTop.Site>("http://yrsoft.cu.cc:8080", "/catalog/sites");
             var t =  tmp.Create(new DeskTop.Site(5,"Test"));
         }
+[TestMethod]
+        public void DelTest()
+        {
+            var k = Repos.KeyWords.Create("testWord");
+            k.personId = 100;
+            Repos.KeyWords.Add(k);
+            Repos.KeyWords.Save();
+        }
     }
 }

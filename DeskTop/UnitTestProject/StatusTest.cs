@@ -14,7 +14,7 @@ namespace UnitTestProject
         {
             int max = 15;
             string msg = "test message";
-            var f = new StatusIndicator(max);
+            var f = new StatusIndicator(new Status(max));
             var t =  Task.Factory.StartNew(() =>
             {
              
