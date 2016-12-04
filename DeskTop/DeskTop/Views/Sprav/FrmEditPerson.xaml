@@ -32,7 +32,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
             <Button Name="btnOk" IsDefault="True" Content="OK" Width="80" Height="25" Click="btnOk_Click" Margin="0,5,5,5"/>
-            <Button Name="btnCansel" Content="Отмена" IsCancel="True" Width="80" Height="25" Margin="5"/>
+            <Button Name="btnCansel" Content="Отмена" IsCancel="True" Width="80" Height="25" Margin="5" Click="btnCansel_Click_1"/>
         </StackPanel>
 
     </Grid>

@@ -54,5 +54,10 @@ namespace DeskTop.Views
             Repos.KeyWords.Add(kw);
             UiHelper.RefreshCollection(dgKeyWords.ItemsSource);
         }
+
+        private void btnCansel_Click_1(object sender, RoutedEventArgs e)
+        {
+            person.CancelEdit();
+        }
     }
 }

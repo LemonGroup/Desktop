@@ -38,5 +38,9 @@ namespace DeskTop.Views
             DialogResult = false;
         }
 
+        private void btnCansel_Click_1(object sender, RoutedEventArgs e)
+        {
+            site.CancelEdit();
+        }
     }
 }

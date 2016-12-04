@@ -67,6 +67,7 @@
     <Compile Include="Data\Sprav\AbstractRepo.cs" />
     <Compile Include="Data\Sprav\KeyWord.cs" />
     <Compile Include="Data\Sprav\KeyWordRepo.cs" />
+    <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Util\Status.cs" />
     <Compile Include="Util\StatusIndicator.xaml.cs">
       <DependentUpon>StatusIndicator.xaml</DependentUpon>

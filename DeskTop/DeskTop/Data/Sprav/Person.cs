@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using DeskTop.Annotations;
 using DeskTop.Data.Sprav;
 
 namespace DeskTop
 {
-    public class Person : IEditableObject
+    public class Person : IEditableObject, INotifyPropertyChanged
     {
         public Person(int id, string name)
         {
@@ -17,11 +19,23 @@ namespace DeskTop
             Name = name;
         }
         public int Id { get; set; }
-        public string Name { get; set; }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
         public List<KeyWord> KeyWords { get; private set; }
         public override string ToString() { return Name; }
         private string oldName;
         private SortedList<int, KeyWord> oldKeyWords;
+        private string _name;
+
         public void BeginEdit()
         {
             oldName = Name;
@@ -44,6 +58,15 @@ namespace DeskTop
         public void CancelEdit()
         {
             Name = oldName;
+            KeyWords = oldKeyWords.Values.ToList();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
