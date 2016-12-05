@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Policy;
+using System.Threading;
 using DeskTop;
 using DeskTop.Web;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,6 +22,8 @@ namespace UnitTestProject
 [TestMethod]
         public void DelTest()
         {
+            Repos.LoadRepos();
+            while (!Repos.IsLoaded) { Thread.Sleep(200);}
             var k = Repos.KeyWords.Create("testWord");
             k.personId = 100;
             Repos.KeyWords.Add(k);

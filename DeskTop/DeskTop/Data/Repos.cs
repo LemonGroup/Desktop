@@ -31,19 +31,19 @@ namespace DeskTop
         {
             try
             {
-                /*var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
+                var dlPerosns = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/persons");
                 var dlSites = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/sites");
                 var dlKW = new DataLoader("http://yrsoft.cu.cc:8080", "/catalog/keywords");
                 _sitesRepo = new SitesRepo(dlSites);
                 _keyWordRepo = new KeyWordRepo(dlKW);
-                _personRepo = new PersonRepo(dlPerosns);*/
-
+                _personRepo = new PersonRepo(dlPerosns);
+                IsLoaded = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка загрузки справочников!");
             }
-
+            /*
 
             // fake data
             var task = new Task(() =>
@@ -84,7 +84,7 @@ namespace DeskTop
 
             });
             task.Start();
-            task.Wait();
+            task.Wait();        */
         }
 
 

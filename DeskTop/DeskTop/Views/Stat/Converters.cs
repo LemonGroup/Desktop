@@ -40,7 +40,9 @@ namespace DeskTop.Views
                 if (data == null) return null;
                 IEnumerable<Statistics.StatRow> resRows = data.Where(r => r.Person == parameter.ToString());
                 if (!resRows.Any()) return null;
-                return resRows.First();
+                var row = resRows.First();
+                row.Rank = resRows.Sum(r => r.Rank);
+                return row;
             }
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {

@@ -33,47 +33,50 @@ namespace DeskTop
             var result = new List<StatRow>();
             Status.Max = persons.Count();
             Status.Current = 0;
-            /*var data = await GetDaylyStat(from, to, persons, sites);
+            var data = await GetDaylyStat(from, to, persons, sites);
             var gData = data.GroupBy(d => d.Person);
             foreach (var grp in gData)
                 if (grp.Any())
                     result.Add(new StatRow(grp.Key, grp.Sum(p => p.Rank), grp.First().Date));
-*/
+            return result;
 
             // заглушка - возвращаем фейковые  данные
-
-            int days = (int)(to - from).TotalDays + 1; // +1 чтобы не было нуля
-            return await Task<IEnumerable<StatRow>>.Factory.StartNew(() =>
-            {
-                foreach (Person person in persons)
-                {
-                    Status.CurName = person.Name;
-                    Status.Current++;
-                    result.Add(new StatRow(person.Name, GetRnd()*days * sites.Count(), @from));
-                }
-
-                return result;
-            });
+/*
+                        int days = (int)(to - from).TotalDays + 1; // +1 чтобы не было нуля
+                        return await Task<IEnumerable<StatRow>>.Factory.StartNew(() =>
+                        {
+                            foreach (Person person in persons)
+                            {
+                                Status.CurName = person.Name;
+                                Status.Current++;
+                                result.Add(new StatRow(person.Name, GetRnd()*days * sites.Count(), @from));
+                            }
+            
+                            return result;
+                        });*/
 
         }
         public static async Task<IEnumerable<StatRow>> GetDaylyStat(DateTime from, DateTime to, 
             IEnumerable<Person> persons, IEnumerable<Site> sites)
         {
             var result = new List<StatRow>();
-
-            /*foreach (Person person in persons)
+            Status.Current = 0;
+            Status.Max = persons.Count()*sites.Count();
+            foreach (Person person in persons)
             {
-
                 foreach (Site site in sites)
                 {
+                    Status.CurName = string.Format("{0} - {1}", person.Name, site.Url);
+                    Status.Current++;
                     var data = await StatLoader.GetStatistics(from, to, person, site);
                     foreach (StatLoader.DataRow dataRow in data)
                         result.Add(new StatRow(person.Name, dataRow.numberOfNewPages, dataRow.Date));
                 }
 
-            }*/
+            }
+            return result;
             // заглушка - возвращаем фейковые  данные
-            int days = (int)(to - from).TotalDays;
+            /*int days = (int)(to - from).TotalDays;
             StatusDayly.Max = days;
             StatusDayly.Current = 0;
             return await Task<IEnumerable<StatRow>>.Factory.StartNew(() =>
@@ -88,7 +91,7 @@ namespace DeskTop
                 }
                 return result;
 
-            });
+            });*/
 
         }
 

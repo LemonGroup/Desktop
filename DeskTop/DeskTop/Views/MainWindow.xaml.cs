@@ -68,7 +68,7 @@ namespace DeskTop.Views
 
         private async void btnShowEveryDayStat_Click(object sender, RoutedEventArgs e)
         {
-            sIndicator = new StatusIndicator(Statistics.StatusDayly);
+            sIndicator = new StatusIndicator(Statistics.Status);
             sIndicator.Show();
             IEnumerable<Statistics.StatRow> data = await Statistics.GetDaylyStat(dtaFrom.SelectedDate.Value, dtaTo.SelectedDate.Value,
                 personSelector.SelectedElements, siteSelector.SelectedElements);

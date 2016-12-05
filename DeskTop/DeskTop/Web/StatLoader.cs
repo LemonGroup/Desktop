@@ -30,7 +30,7 @@ namespace DeskTop.Web
         }
         public class DataRow
         {
-            private string date;
+            public string date;
             public int numberOfNewPages;
 
             public DateTime Date

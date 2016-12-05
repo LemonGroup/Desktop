@@ -21,7 +21,7 @@ namespace DeskTop.Web
         {
             var httpWebRequest = GetRequest(METHOD_GET, getStr);
 
-            var httpResponse = (HttpWebResponse) await httpWebRequest.GetResponseAsync();
+            var httpResponse = (HttpWebResponse) await httpWebRequest.GetResponseAsync().ConfigureAwait(false);
             string answer = "";
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
